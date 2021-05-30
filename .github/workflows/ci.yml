@@ -41,6 +41,8 @@ jobs:
       run: rustfmt ./src/main.rs --check
 
   code-scan:
+    name: Code Scan
+
     runs-on: ubuntu-latest
 
     steps:
