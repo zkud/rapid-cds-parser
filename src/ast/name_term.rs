@@ -6,9 +6,7 @@ pub struct NameTerm {
 
 impl NameTerm {
     pub fn new(value: String) -> NameTerm {
-        NameTerm {
-            value
-        }
+        NameTerm { value }
     }
 
     pub fn get_value(&self) -> String {

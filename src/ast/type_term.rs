@@ -1,7 +1,7 @@
+use super::name_term::NameTerm;
 use super::traits::ast_term::ASTTerm;
 use super::traits::module_usable_term::ModuleUsableTerm;
 use super::traits::service_usable_term::ServiceUsableTerm;
-use super::name_term::NameTerm;
 
 pub struct TypeTerm {
     name: NameTerm,
@@ -12,7 +12,7 @@ impl TypeTerm {
     pub fn new(name: NameTerm, resolved_type_name: NameTerm) -> TypeTerm {
         TypeTerm {
             name,
-            resolved_type_name
+            resolved_type_name,
         }
     }
 

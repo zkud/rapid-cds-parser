@@ -10,10 +10,10 @@ impl ModuleTerm {
     pub fn new(definitions: Vec<Box<dyn ModuleUsableTerm>>) -> ModuleTerm {
         ModuleTerm {
             name: "".to_string(),
-            definitions 
+            definitions,
         }
     }
-    
+
     pub fn get_name(&self) -> String {
         self.name.clone()
     }
@@ -21,7 +21,7 @@ impl ModuleTerm {
     pub fn set_name(&mut self, new_name: &String) {
         self.name = new_name.clone();
     }
-    
+
     fn build_definitions_json(&self) -> String {
         let mut definitions_json = String::new();
 

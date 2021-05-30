@@ -1,4 +1,5 @@
-#[macro_use] extern crate lalrpop_util;
+#[macro_use]
+extern crate lalrpop_util;
 
 lalrpop_mod!(pub cds);
 
@@ -7,7 +8,8 @@ use ast::traits::ast_term::ASTTerm;
 
 fn main() {
     let module = cds::ModuleParser::new()
-        .parse("
+        .parse(
+            "
             service ServiceName : a, b, c {
                 entity EntityName {
                     a : Integer;
@@ -29,8 +31,9 @@ fn main() {
             service ServiceName2 {
 
             }
-        ")
+        ",
+        )
         .unwrap();
-    
+
     println!("{}", module.convert_to_json());
 }

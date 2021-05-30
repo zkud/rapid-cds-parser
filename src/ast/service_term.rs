@@ -1,7 +1,7 @@
+use super::name_term::NameTerm;
 use super::traits::ast_term::ASTTerm;
 use super::traits::module_usable_term::ModuleUsableTerm;
 use super::traits::service_usable_term::ServiceUsableTerm;
-use super::name_term::NameTerm;
 
 pub struct ServiceTerm {
     name: NameTerm,
@@ -10,18 +10,22 @@ pub struct ServiceTerm {
 }
 
 impl ServiceTerm {
-    pub fn new(name: NameTerm, applied_aspects: Vec<NameTerm>, definitions: Vec<Box<dyn ServiceUsableTerm>>) -> ServiceTerm {
+    pub fn new(
+        name: NameTerm,
+        applied_aspects: Vec<NameTerm>,
+        definitions: Vec<Box<dyn ServiceUsableTerm>>,
+    ) -> ServiceTerm {
         ServiceTerm {
             name,
             applied_aspects,
-            definitions 
+            definitions,
         }
     }
-    
+
     pub fn get_name(&self) -> String {
         self.name.get_value()
     }
-    
+
     fn build_definitions_json(&self) -> String {
         let mut definitions_json = String::new();
 

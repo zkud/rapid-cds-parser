@@ -1,8 +1,8 @@
-use super::traits::ast_term::ASTTerm;
-use super::traits::service_usable_term::ServiceUsableTerm;
-use super::traits::module_usable_term::ModuleUsableTerm;
-use super::name_term::NameTerm;
 use super::field_term::FieldTerm;
+use super::name_term::NameTerm;
+use super::traits::ast_term::ASTTerm;
+use super::traits::module_usable_term::ModuleUsableTerm;
+use super::traits::service_usable_term::ServiceUsableTerm;
 
 pub struct EntityTerm {
     name: NameTerm,
@@ -11,11 +11,15 @@ pub struct EntityTerm {
 }
 
 impl EntityTerm {
-    pub fn new(name: NameTerm, applied_aspects: Vec<NameTerm>, fields: Vec<FieldTerm>) -> EntityTerm {
+    pub fn new(
+        name: NameTerm,
+        applied_aspects: Vec<NameTerm>,
+        fields: Vec<FieldTerm>,
+    ) -> EntityTerm {
         EntityTerm {
             name,
             applied_aspects,
-            fields
+            fields,
         }
     }
 

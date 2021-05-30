@@ -1,5 +1,5 @@
-use super::traits::ast_term::ASTTerm;
 use super::name_term::NameTerm;
+use super::traits::ast_term::ASTTerm;
 
 pub struct ParamTerm {
     name: NameTerm,
@@ -8,10 +8,7 @@ pub struct ParamTerm {
 
 impl ParamTerm {
     pub fn new(name: NameTerm, type_name: NameTerm) -> ParamTerm {
-        ParamTerm {
-            name,
-            type_name
-        }
+        ParamTerm { name, type_name }
     }
 
     pub fn get_name(&self) -> String {

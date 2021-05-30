@@ -1,5 +1,5 @@
-use super::traits::ast_term::ASTTerm;
 use super::name_term::NameTerm;
+use super::traits::ast_term::ASTTerm;
 
 pub struct FieldTerm {
     name: NameTerm,
@@ -8,10 +8,7 @@ pub struct FieldTerm {
 
 impl FieldTerm {
     pub fn new(name: NameTerm, type_name: NameTerm) -> FieldTerm {
-        FieldTerm {
-            name,
-            type_name
-        }
+        FieldTerm { name, type_name }
     }
 
     pub fn get_name(&self) -> String {

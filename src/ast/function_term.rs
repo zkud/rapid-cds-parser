@@ -1,8 +1,8 @@
+use super::name_term::NameTerm;
+use super::param_term::ParamTerm;
+use super::returns_term::ReturnsTerm;
 use super::traits::ast_term::ASTTerm;
 use super::traits::service_usable_term::ServiceUsableTerm;
-use super::name_term::NameTerm;
-use super::returns_term::ReturnsTerm;
-use super::param_term::ParamTerm;
 
 pub struct FunctionTerm {
     name: NameTerm,

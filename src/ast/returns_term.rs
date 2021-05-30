@@ -1,5 +1,5 @@
-use super::traits::ast_term::ASTTerm;
 use super::name_term::NameTerm;
+use super::traits::ast_term::ASTTerm;
 
 pub struct ReturnsTerm {
     type_name: NameTerm,
