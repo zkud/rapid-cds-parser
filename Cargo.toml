@@ -1,0 +1,12 @@
+[package]
+name = "rapid-cds-parser"
+version = "0.1.0"
+authors = ["zkud <kudirko.anton@gmail.com>"]
+edition = "2018"
+
+[build-dependencies]
+lalrpop = "0.19.5"
+
+[dependencies]
+lalrpop-util = "0.19.5"
+regex = "1"
