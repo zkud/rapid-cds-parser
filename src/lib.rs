@@ -5,16 +5,15 @@ use std::io::prelude::*;
 extern crate lalrpop_util;
 lalrpop_mod!(pub cds);
 
-use std::path::Path;
 use std::fs::File;
+use std::path::Path;
 
 pub mod ast;
 use ast::traits::ast_term::ASTTerm;
 
 fn transpile(mut cx: FunctionContext) -> JsResult<JsString> {
-    let path = cx.argument::<JsString>(0)?
-        .value(&mut cx);
-    
+    let path = cx.argument::<JsString>(0)?.value(&mut cx);
+
     let path = Path::new(&path);
 
     let mut file = File::open(path).unwrap();
@@ -22,9 +21,7 @@ fn transpile(mut cx: FunctionContext) -> JsResult<JsString> {
     let mut content = String::new();
     file.read_to_string(&mut content).unwrap();
 
-    let module = cds::ModuleParser::new()
-        .parse(&content)
-        .unwrap();
+    let module = cds::ModuleParser::new().parse(&content).unwrap();
 
     Ok(cx.string(module.convert_to_json()))
 }
