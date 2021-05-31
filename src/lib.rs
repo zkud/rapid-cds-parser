@@ -1,50 +1,36 @@
-// #[macro_use]
-// extern crate lalrpop_util;
-
-// lalrpop_mod!(pub cds);
-
-// pub mod ast;
-// use ast::traits::ast_term::ASTTerm;
-
-// fn main() {
-//     let module = cds::ModuleParser::new()
-//         .parse(
-//             "
-//             service ServiceName : a, b, c {
-//                 entity EntityName {
-//                     a : Integer;
-//                 }
-
-//                 action magicAction ( testParam: String) returns Integer;
-
-//                 function magicFunction () returns Float;
-//             }
-
-//             type testType : t234;
-
-//             entity TestEntity {
-//                 a : String;
-//                 b : String;
-//                 c : testType;
-//             }
-
-//             service ServiceName2 {
-
-//             }
-//         ",
-//         )
-//         .unwrap();
-
-//     println!("{}", module.convert_to_json());
-// }
 use neon::prelude::*;
+use std::io::prelude::*;
 
-fn hello(mut cx: FunctionContext) -> JsResult<JsString> {
-    Ok(cx.string("hello node"))
+#[macro_use]
+extern crate lalrpop_util;
+lalrpop_mod!(pub cds);
+
+use std::path::Path;
+use std::fs::File;
+
+pub mod ast;
+use ast::traits::ast_term::ASTTerm;
+
+fn transpile(mut cx: FunctionContext) -> JsResult<JsString> {
+    let path = cx.argument::<JsString>(0)?
+        .value(&mut cx);
+    
+    let path = Path::new(&path);
+
+    let mut file = File::open(path).unwrap();
+
+    let mut content = String::new();
+    file.read_to_string(&mut content).unwrap();
+
+    let module = cds::ModuleParser::new()
+        .parse(&content)
+        .unwrap();
+
+    Ok(cx.string(module.convert_to_json()))
 }
 
 #[neon::main]
 fn main(mut cx: ModuleContext) -> NeonResult<()> {
-    cx.export_function("hello", hello)?;
+    cx.export_function("transpile", transpile)?;
     Ok(())
 }
